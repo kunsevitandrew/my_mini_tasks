@@ -57,14 +57,19 @@
 # More optimal variant
 def task(lst, index, k, n):
     if index == k:
-        if lst == sorted(set(lst)):
-            print(lst)
+        print(*lst)
         # return
     else:
         for i in range(index, n - (k - index) + 1):
             lst[index] = i
+            flag = True
+            for j in range(k - 1):
+                if lst[j] >= lst[j + 1]:
+                    flag = False
+                    break
 
-            task(lst, index + 1, k, n)
+            if flag:
+                task(lst, index + 1, k, n)
 
 
 def combinations(n, k):
@@ -80,3 +85,32 @@ n = 7
 k = 4
 
 combinations(n, k)
+
+
+# other variants
+
+# 1)
+# import itertools
+#
+#
+# k, n = [int(i) for i in input().split()]
+# m = list(itertools.combinations(range(n), k))
+#
+# for i in range(len(m)):
+#     print(*m[i])
+
+# 2)
+# k, n = map(int, input().split(' '))
+# lst = []
+#
+#
+# def gen(i):
+#     if len(lst) == k:
+#         print(*lst)
+#     for j in range(i):
+#         lst.append(j)
+#         gen(j)
+#         lst.pop()
+#
+# gen(n)
+
