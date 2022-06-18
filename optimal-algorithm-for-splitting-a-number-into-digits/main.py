@@ -3,13 +3,13 @@
 import time
 import random
 
-
+#
 def time_of_func(func):
     def wrapper(*args, **kwargs):
         my_time = time.time()
         func(*args, **kwargs)
         my_time -= time.time()
-        print(f"Lead time of func {func.__name__} is {my_time}")
+        print(f"Lead time of func {func.__name__} is {abs(my_time)}")
 
     return wrapper
 
